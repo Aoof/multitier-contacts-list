@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Contact.cs" />
+    <Compile Include="BLL\Validator.cs" />
     <Compile Include="DAL\ContactDB.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
     <Compile Include="Database1DataSet.Designer.cs">

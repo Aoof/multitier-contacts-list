@@ -1,7 +1,6 @@
 ﻿using MultiTierContactList_Project.BLL;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace MultiTierContactList_Project.DAL
 {
@@ -34,86 +33,84 @@ namespace MultiTierContactList_Project.DAL
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
-                return contacts;
+                throw new System.Exception(ex.Message);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
-                return contacts;
+                throw new System.Exception(ex.Message);
             }
         }
 
-        public static void Insert(Contact insertable)
+        public static void Insert(Contact entity)
         {
             try
             {
                 connection = DatabaseConnection.GetConnection();
                 sqlCommand = new SqlCommand("INSERT INTO Contact VALUES(@id, @FirstName, @LastName, @Email)", connection);
-                sqlCommand.Parameters.AddWithValue("@id", insertable.Id);
-                sqlCommand.Parameters.AddWithValue("@FirstName", insertable.FirstName);
-                sqlCommand.Parameters.AddWithValue("@LastName", insertable.LastName);
-                sqlCommand.Parameters.AddWithValue("@Email", insertable.Email);
+                sqlCommand.Parameters.AddWithValue("@id", entity.Id);
+                sqlCommand.Parameters.AddWithValue("@FirstName", entity.FirstName);
+                sqlCommand.Parameters.AddWithValue("@LastName", entity.LastName);
+                sqlCommand.Parameters.AddWithValue("@Email", entity.Email);
                 sqlCommand.ExecuteNonQuery();
                 DatabaseConnection.CloseConnection();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
         }
 
-        public static void Delete(Contact contact) {
+        public static void Delete(Contact entity) {
             try
             {
                 connection = DatabaseConnection.GetConnection();
                 sqlCommand = new SqlCommand("DELETE FROM Contact WHERE Id = @id", connection);
-                sqlCommand.Parameters.AddWithValue("@id", contact.Id);
+                sqlCommand.Parameters.AddWithValue("@id", entity.Id);
                 sqlCommand.ExecuteNonQuery();
                 DatabaseConnection.CloseConnection();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
         }
 
-        public static void Update(Contact updatable)
+        public static void Update(Contact entity)
         {
             try
             {
                 connection = DatabaseConnection.GetConnection();
                 sqlCommand = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Email = @Email WHERE Id = @id", connection);
-                sqlCommand.Parameters.AddWithValue("@id", updatable.Id);
-                sqlCommand.Parameters.AddWithValue("@FirstName", updatable.FirstName);
-                sqlCommand.Parameters.AddWithValue("@LastName", updatable.LastName);
-                sqlCommand.Parameters.AddWithValue("@Email", updatable.Email);
+                sqlCommand.Parameters.AddWithValue("@id", entity.Id);
+                sqlCommand.Parameters.AddWithValue("@FirstName", entity.FirstName);
+                sqlCommand.Parameters.AddWithValue("@LastName", entity.LastName);
+                sqlCommand.Parameters.AddWithValue("@Email", entity.Email);
                 sqlCommand.ExecuteNonQuery();
                 DatabaseConnection.CloseConnection();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 DatabaseConnection.CloseConnection();
+                throw new System.Exception(ex.Message);
             }
         }
     }

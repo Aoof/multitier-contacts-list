@@ -57,16 +57,6 @@ namespace MultiTierContactList_Project
         {
             try
             {
-                // Basic validation will do for now
-                if (string.IsNullOrWhiteSpace(txtContactNumber.Text) ||
-                    string.IsNullOrWhiteSpace(txtFirstName.Text) ||
-                    string.IsNullOrWhiteSpace(txtLastName.Text) ||
-                    string.IsNullOrWhiteSpace(txtEmail.Text))
-                {
-                    MessageBox.Show("Please fill all fields");
-                    return;
-                }
-                
                 Contact contact = new Contact();
                 contact.Id = Convert.ToInt32(txtContactNumber.Text);
                 contact.FirstName = txtFirstName.Text;
@@ -87,12 +77,6 @@ namespace MultiTierContactList_Project
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtContactNumber.Text))
-                {
-                    MessageBox.Show("Please select a contact to update");
-                    return;
-                }
-                
                 Contact contact = new Contact();
                 contact.Id = Convert.ToInt32(txtContactNumber.Text);
                 contact.FirstName = txtFirstName.Text;
@@ -146,9 +130,9 @@ namespace MultiTierContactList_Project
                     RefreshDatagridView();
                     return;
                 }
-                
-                int searchTerm = Convert.ToInt32(txtContactNumber.Text);
-                Contact.Search(searchTerm);
+
+                Contact searchContact = new Contact { Id = Convert.ToInt32(txtContactNumber.Text) };
+                Contact.Search(searchContact.Id);
                 RefreshDatagridView();
             }
             catch (Exception ex)
@@ -159,9 +143,16 @@ namespace MultiTierContactList_Project
 
         private void btnClearFields_Click(object sender, EventArgs e)
         {
-            ClearFields();
-            Contact.GetAllContacts();
-            RefreshDatagridView();
+            try
+            {
+                ClearFields();
+                Contact.GetAllContacts();
+                RefreshDatagridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error clearing fields: " + ex.Message);
+            }
         }
         
         private void ClearFields()

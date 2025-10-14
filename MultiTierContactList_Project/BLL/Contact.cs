@@ -5,12 +5,15 @@ namespace MultiTierContactList_Project.BLL
 {
     internal class Contact
     {
+        // private fields
         private int id;
         private string firstName;
         private string lastName;
         private string email;
 
         private static List<Contact> contacts = null;
+
+        // public properties
         public static List<Contact> Contacts
         {
             get { return contacts; }
@@ -19,27 +22,28 @@ namespace MultiTierContactList_Project.BLL
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set { id = Validator.ValidateContactId(value); }
         }
 
         public string FirstName 
         {
             get { return firstName; }
-            set { firstName = value; }
+            set { firstName = Validator.ValidateName(value); }
         }
 
         public string LastName 
         {
             get { return lastName; }
-            set { lastName = value; }
+            set { lastName = Validator.ValidateName(value); }
         }
 
         public string Email 
         {
             get { return email; }
-            set { email = value; }
+            set { email = Validator.ValidateEmail(value); }
         }
 
+        // empty constructor
         public Contact()
         {
             id = 0;
@@ -48,6 +52,7 @@ namespace MultiTierContactList_Project.BLL
             email = string.Empty;
         }
 
+        // parameterized constructor
         public Contact(int id, string firstName, string lastName, string email)
         {
             this.id = id;
@@ -56,31 +61,32 @@ namespace MultiTierContactList_Project.BLL
             this.email = email;
         }
 
-        public Contact(Contact contact)
+        // copy constructor
+        public Contact(Contact entity)
         {
-            id = contact.id;
-            firstName = contact.firstName;
-            lastName = contact.lastName;
-            email = contact.email;
+            id = entity.id;
+            firstName = entity.firstName;
+            lastName = entity.lastName;
+            email = entity.email;
         }
 
         // public static crud operations
 
-        public static void Insert(Contact insertable)
+        public static void Insert(Contact entity)
         {
-            ContactDB.Insert(insertable);
+            ContactDB.Insert(entity);
             RefreshContactsList();
         }
 
-        public static void Update(Contact updatable)
+        public static void Update(Contact entity)
         {
-            ContactDB.Update(updatable);
+            ContactDB.Update(entity);
             RefreshContactsList();
         }
 
-        public static void Delete(Contact contact)
+        public static void Delete(Contact entity)
         {
-            ContactDB.Delete(contact);
+            ContactDB.Delete(entity);
             RefreshContactsList();
         }
 
