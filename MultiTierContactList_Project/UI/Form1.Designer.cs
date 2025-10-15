@@ -1,4 +1,4 @@
-﻿namespace MultiTierContactList_Project
+﻿namespace MultiTierContactList_Project.UI
 {
     partial class Form1
     {

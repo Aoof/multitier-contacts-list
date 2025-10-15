@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiTierContactList_Project.DAL;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -8,9 +9,9 @@ namespace MultiTierContactList_Project.BLL
     {
         public static int ValidateContactId(int contactId)
         {
-            if (contactId <= 0)
+            if (contactId <= 0 || contactId > 10000000)
             {
-                throw new Exception("Contact ID must be a positive integer.");
+                throw new ValidationException("Contact ID must be between 1 to 7 digits long.");
             }
             return contactId;
         }
@@ -19,7 +20,25 @@ namespace MultiTierContactList_Project.BLL
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new Exception("Name cannot be empty.");
+                throw new ValidationException("Name cannot be empty.");
+            }
+
+            // Name regex explanation:
+            // [ starts a character combination
+            // a-zA-Z allows any letter
+            // \s allows whitespace
+            // \' allows apostrophes
+            // \- allows hyphens
+            // \, allows commas
+            // ]+ ends the character combination
+            if (Regex.IsMatch(name, @"^[a-zA-Z\s\'\-\,]+$") == false)
+            {
+                throw new ValidationException("Name contains invalid characters.");
+            }
+
+            if (name.Length > 50)
+            {
+                throw new ValidationException("Name cannot exceed 50 characters.");
             }
 
             return name;
@@ -30,18 +49,23 @@ namespace MultiTierContactList_Project.BLL
         {
             if (string.IsNullOrEmpty(email) || email.Contains(' '))
             {
-                throw new Exception("Email cannot be empty or contain spaces.");
+                throw new ValidationException("Email cannot be empty or contain spaces.");
             }
 
             // Email regex explanation:
-            // ^ asserts position at start of the string
             // [^@\s]+ matches one or more characters that are not '@' or whitespace
             // @ matches the '@' character
             // [^@\s]+ matches one or more characters that are not '@' or whitespace
             // \. matches the '.' character
+            // [^@\s]+ matches one or more characters that are not '@' or whitespace
             if (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$") == false)
             {
-                throw new Exception("Email format is invalid.");
+                throw new ValidationException("Email format is invalid.");
+            }
+
+            if (email.Length > 100)
+            {
+                throw new ValidationException("Email cannot exceed 100 characters.");
             }
 
             return email;

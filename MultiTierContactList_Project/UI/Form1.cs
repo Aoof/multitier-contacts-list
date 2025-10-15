@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using MultiTierContactList_Project.BLL;
 
-namespace MultiTierContactList_Project
+namespace MultiTierContactList_Project.UI
 {
     public partial class Form1 : Form
     {
@@ -62,10 +63,14 @@ namespace MultiTierContactList_Project
                 contact.FirstName = txtFirstName.Text;
                 contact.LastName = txtLastName.Text;
                 contact.Email = txtEmail.Text;
-                
+
                 Contact.Insert(contact);
                 RefreshDatagridView();
                 ClearFields();
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("SQL Error adding contact: " + sqlEx.Message);
             }
             catch (Exception ex)
             {

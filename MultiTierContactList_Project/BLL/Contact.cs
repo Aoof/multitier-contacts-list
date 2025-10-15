@@ -100,12 +100,7 @@ namespace MultiTierContactList_Project.BLL
 
         public static void Search(int searchKey)
         {
-            if (contacts == null || contacts.Count == 0)
-            {
-                GetAllContacts();
-                return;
-            }
-            
+            GetAllContacts();
             List<Contact> searchResults = new List<Contact>();
             foreach (Contact c in contacts)
             {
@@ -114,14 +109,13 @@ namespace MultiTierContactList_Project.BLL
                     searchResults.Add(c);
                 }
             }
+            contacts = searchResults;
             
-            if (searchResults.Count > 0)
+
+            if (contacts == null || contacts.Count == 0)
             {
-                contacts = searchResults;
-            }
-            else
-            {
-                RefreshContactsList();
+                GetAllContacts();
+                throw new ContactNotFoundException("No contacts found with the given ID.");
             }
         }
 
