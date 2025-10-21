@@ -13,6 +13,7 @@ namespace MultiTierContactList_Project.UI
             Contact.GetAllContacts();
             RefreshDatagridView();
             ConfigureDataGridView();
+            comboContactType.DataSource = Enum.GetNames(typeof(ContactTypeEnum));
         }
         
         private void ConfigureDataGridView()
@@ -46,6 +47,7 @@ namespace MultiTierContactList_Project.UI
                     txtFirstName.Text = contactRow.Cells[1].Value?.ToString() ?? string.Empty;
                     txtLastName.Text = contactRow.Cells[2].Value?.ToString() ?? string.Empty;
                     txtEmail.Text = contactRow.Cells[3].Value?.ToString() ?? string.Empty;
+                    comboContactType.SelectedItem = contactRow.Cells[4].Value?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -63,6 +65,7 @@ namespace MultiTierContactList_Project.UI
                 contact.FirstName = txtFirstName.Text;
                 contact.LastName = txtLastName.Text;
                 contact.Email = txtEmail.Text;
+                contact.ContactType = comboContactType.SelectedItem.ToString();
 
                 Contact.Insert(contact);
                 RefreshDatagridView();
@@ -87,6 +90,7 @@ namespace MultiTierContactList_Project.UI
                 contact.FirstName = txtFirstName.Text;
                 contact.LastName = txtLastName.Text;
                 contact.Email = txtEmail.Text;
+                contact.ContactType = comboContactType.SelectedItem.ToString();
                 
                 Contact.Update(contact);
                 RefreshDatagridView();
@@ -166,6 +170,7 @@ namespace MultiTierContactList_Project.UI
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtEmail.Text = string.Empty;
+            comboContactType.SelectedIndex = 0;
         }
     }
 }

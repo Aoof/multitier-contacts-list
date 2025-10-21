@@ -48,6 +48,8 @@
             this.dgvContacts = new System.Windows.Forms.DataGridView();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new MultiTierContactList_Project.Database1DataSet();
+            this.lblContactType = new System.Windows.Forms.Label();
+            this.comboContactType = new System.Windows.Forms.ComboBox();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxInputs.SuspendLayout();
             this.groupBoxContactsList.SuspendLayout();
@@ -157,6 +159,8 @@
             // 
             // groupBoxInputs
             // 
+            this.groupBoxInputs.Controls.Add(this.comboContactType);
+            this.groupBoxInputs.Controls.Add(this.lblContactType);
             this.groupBoxInputs.Controls.Add(this.txtEmail);
             this.groupBoxInputs.Controls.Add(this.txtLastName);
             this.groupBoxInputs.Controls.Add(this.txtFirstName);
@@ -180,7 +184,7 @@
             // 
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtEmail.Location = new System.Drawing.Point(180, 241);
+            this.txtEmail.Location = new System.Drawing.Point(180, 193);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(240, 30);
@@ -190,7 +194,7 @@
             // 
             this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLastName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtLastName.Location = new System.Drawing.Point(180, 184);
+            this.txtLastName.Location = new System.Drawing.Point(180, 152);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(240, 30);
@@ -200,7 +204,7 @@
             // 
             this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFirstName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtFirstName.Location = new System.Drawing.Point(180, 127);
+            this.txtFirstName.Location = new System.Drawing.Point(180, 111);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(5);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(240, 30);
@@ -221,7 +225,7 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblEmail.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.lblEmail.Location = new System.Drawing.Point(30, 243);
+            this.lblEmail.Location = new System.Drawing.Point(31, 195);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(55, 23);
@@ -233,7 +237,7 @@
             this.lblLastName.AutoSize = true;
             this.lblLastName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblLastName.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.lblLastName.Location = new System.Drawing.Point(30, 187);
+            this.lblLastName.Location = new System.Drawing.Point(31, 155);
             this.lblLastName.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(95, 23);
@@ -245,7 +249,7 @@
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblFirstName.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.lblFirstName.Location = new System.Drawing.Point(30, 131);
+            this.lblFirstName.Location = new System.Drawing.Point(30, 115);
             this.lblFirstName.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(96, 23);
@@ -307,6 +311,26 @@
             this.database1DataSet.DataSetName = "Database1DataSet";
             this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // lblContactType
+            // 
+            this.lblContactType.AutoSize = true;
+            this.lblContactType.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblContactType.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblContactType.Location = new System.Drawing.Point(31, 235);
+            this.lblContactType.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lblContactType.Name = "lblContactType";
+            this.lblContactType.Size = new System.Drawing.Size(114, 23);
+            this.lblContactType.TabIndex = 8;
+            this.lblContactType.Text = "Contact Type:";
+            // 
+            // comboContactType
+            // 
+            this.comboContactType.FormattingEnabled = true;
+            this.comboContactType.Location = new System.Drawing.Point(180, 231);
+            this.comboContactType.Name = "comboContactType";
+            this.comboContactType.Size = new System.Drawing.Size(240, 36);
+            this.comboContactType.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -363,5 +387,7 @@
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private Database1DataSet database1DataSet;
         private System.Windows.Forms.Button btnClearFields;
+        private System.Windows.Forms.ComboBox comboContactType;
+        private System.Windows.Forms.Label lblContactType;
     }
 }

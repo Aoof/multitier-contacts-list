@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MultiTierContactList_Project.BLL.Contact">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQCAEQAACBAAQAgAAkAAAAAACEAAAAAAAAACAAgAgg=</HashCode>
+      <FileName>BLL\Contact.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="contactType" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="MultiTierContactList_Project.BLL.ContactTypeEnum">
+    <Position X="11.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAA=</HashCode>
+      <FileName>BLL\ContactTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

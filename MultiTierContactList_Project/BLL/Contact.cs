@@ -10,6 +10,7 @@ namespace MultiTierContactList_Project.BLL
         private string firstName;
         private string lastName;
         private string email;
+        private ContactTypeEnum contactType;
 
         private static List<Contact> contacts = null;
 
@@ -43,6 +44,12 @@ namespace MultiTierContactList_Project.BLL
             set { email = Validator.ValidateEmail(value); }
         }
 
+        public string ContactType
+        {
+            get { return contactType.ToString(); }
+            set { contactType = Validator.ValidateContactType(value); }
+        }
+
         // empty constructor
         public Contact()
         {
@@ -50,15 +57,17 @@ namespace MultiTierContactList_Project.BLL
             firstName = string.Empty;
             lastName = string.Empty;
             email = string.Empty;
+            contactType = ContactTypeEnum.Other;
         }
 
         // parameterized constructor
-        public Contact(int id, string firstName, string lastName, string email)
+        public Contact(int id, string firstName, string lastName, string email, ContactTypeEnum contactType)
         {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
+            this.contactType = contactType;
         }
 
         // copy constructor
@@ -68,6 +77,7 @@ namespace MultiTierContactList_Project.BLL
             firstName = entity.firstName;
             lastName = entity.lastName;
             email = entity.email;
+            contactType = entity.contactType;
         }
 
         // public static crud operations
@@ -92,8 +102,7 @@ namespace MultiTierContactList_Project.BLL
 
         public static void Delete(int id)
         {
-            Contact tmp = new Contact();
-            tmp.Id = id;
+            Contact tmp = new Contact { Id = id };
             ContactDB.Delete(tmp);
             RefreshContactsList();
         }

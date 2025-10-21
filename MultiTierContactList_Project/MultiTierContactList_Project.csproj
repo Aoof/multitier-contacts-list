@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ContactTypeEnum.cs" />
     <Compile Include="BLL\Contact.cs" />
     <Compile Include="BLL\Validator.cs" />
     <Compile Include="DAL\ContactDB.cs" />
@@ -92,6 +93,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="BLL\ClassDiagramContactType.cd" />
     <None Include="Database1DataSet.xsc">
       <DependentUpon>Database1DataSet.xsd</DependentUpon>
     </None>

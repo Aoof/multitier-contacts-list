@@ -70,5 +70,22 @@ namespace MultiTierContactList_Project.BLL
 
             return email;
         }
+
+        public static ContactTypeEnum ValidateContactType(string contactType)
+        {
+            switch (contactType)
+            {
+                case "Family":
+                    return ContactTypeEnum.Family;
+                case "Friend":
+                    return ContactTypeEnum.Friend;
+                case "Work":
+                    return ContactTypeEnum.Work;
+                case "Other":
+                    return ContactTypeEnum.Other;
+                default:
+                    throw new ValidationException("Contact Type is invalid. Must be Family, Friend, Work, or Other.");
+            }
+        }
     }
 }

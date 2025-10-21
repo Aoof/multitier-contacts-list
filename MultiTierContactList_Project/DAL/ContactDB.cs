@@ -25,6 +25,7 @@ namespace MultiTierContactList_Project.DAL
                     contact.FirstName = sqlDataReader.GetString(1);
                     contact.LastName = sqlDataReader.GetString(2);
                     contact.Email = sqlDataReader.GetString(3);
+                    contact.ContactType = sqlDataReader.GetString(4);
                     contacts.Add(contact);
                 }
                 sqlDataReader.Close();
@@ -52,11 +53,12 @@ namespace MultiTierContactList_Project.DAL
                     }
                 }
                 connection = DatabaseConnection.GetConnection();
-                sqlCommand = new SqlCommand("INSERT INTO Contact VALUES(@id, @FirstName, @LastName, @Email)", connection);
+                sqlCommand = new SqlCommand("INSERT INTO Contact VALUES(@id, @FirstName, @LastName, @Email, @ContactType)", connection);
                 sqlCommand.Parameters.AddWithValue("@id", entity.Id);
                 sqlCommand.Parameters.AddWithValue("@FirstName", entity.FirstName);
                 sqlCommand.Parameters.AddWithValue("@LastName", entity.LastName);
                 sqlCommand.Parameters.AddWithValue("@Email", entity.Email);
+                sqlCommand.Parameters.AddWithValue("@ContactType", entity.ContactType);
                 sqlCommand.ExecuteNonQuery();
             }
             finally
@@ -91,11 +93,12 @@ namespace MultiTierContactList_Project.DAL
                     }
                 }
                 connection = DatabaseConnection.GetConnection();
-                sqlCommand = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Email = @Email WHERE Id = @id", connection);
+                sqlCommand = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Email = @Email, ContactType = @ContactType WHERE Id = @id", connection);
                 sqlCommand.Parameters.AddWithValue("@id", entity.Id);
                 sqlCommand.Parameters.AddWithValue("@FirstName", entity.FirstName);
                 sqlCommand.Parameters.AddWithValue("@LastName", entity.LastName);
                 sqlCommand.Parameters.AddWithValue("@Email", entity.Email);
+                sqlCommand.Parameters.AddWithValue("@ContactType", entity.ContactType);
                 sqlCommand.ExecuteNonQuery();
             }
             finally
